@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-redis
+  namespace: todo-app
+spec:
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+        - name: redis
+          image: bitnami/redis:6.2
+          imagePullPolicy: Always
+          ports:
+            - name: tcp
+              containerPort: 6379
+          env:
+            - name: REDIS_PASSWORD
+              # TODO: use secret
+              value: password
