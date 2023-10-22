@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: no-sync-wave
+  name: todo-app
   namespace: argocd # /!\ important
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: todo-app
+  project: default
 
   source:
     repoURL: https://github.com/chrishrb/todo-deployment.git
     targetRevision: HEAD
-    path: manifests/no-sync
+    path: components/todo-app/base
   destination: 
     server: https://kubernetes.default.svc
     namespace: todo-app

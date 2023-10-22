@@ -4,8 +4,8 @@ namePrefix: kustomize-
 resources:
 - postgres-deployment.yaml
 - postgres-svc.yaml
-- reddis-deployment.yaml
-- reddis-svc.yaml
+- redis-deployment.yaml
+- redis-svc.yaml
 - todo-backend-deployment.yaml
 - todo-backend-svc.yaml
 - todo-frontend-deployment.yaml
