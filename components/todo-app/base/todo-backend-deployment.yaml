@@ -14,8 +14,15 @@ spec:
       labels:
         app: backend
     spec:
+      initContainers:
+      - name: init-wait
+        image: busybox:latest
+        command: ['sh', '-c', 'until nc -vz todo-postgres 5432 ; do sleep 1; done;']
+      - name: init-migrate
+        image: ghcr.io/chrishrb/ghcr.io/chrishrb/todo-backend:main-521f77f
+        command: ['/bin/sh', '/app/migrate.sh']
       containers:
-      - image: ghcr.io/chrishrb/ghcr.io/chrishrb/todo-backend:main-2bb1d9d
+      - image: ghcr.io/chrishrb/ghcr.io/chrishrb/todo-backend:main-521f77f
         name: backend
         ports:
         - containerPort: 3000
