@@ -7,5 +7,5 @@ resources:
 - ingress-prod.yaml
 
 patches:
-  - todo-backend-prod.yaml
-  - todo-frontend-prod.yaml
+  - path: todo-backend-prod.yaml
+  - path: todo-frontend-prod.yaml
