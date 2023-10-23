@@ -1,0 +1,45 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: todo-seed
+  namespace: todo-app
+  annotations:
+    argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 10
+  template:
+    spec:
+      # https://kubernetes.io/docs/concepts/workloads/controllers/job/#handling-pod-and-container-failures
+      # a container in a Pod may fail if pod fails because the process in it exited with a non-zero exit code,
+      # killed for exceeding a memory limit, ...
+      # `OnFailure` : the Pod stays on the node, but the container is re-run
+      # an entire Pod can fail if the pod is kicked off the node (node is upgraded, rebooted, deleted), ...
+      # `Never` : when a Pod fails, then the Job controller starts a new Pod. Your application needs to handle
+      # the case when it is restarted in a new pod (handle temporary files, locks, incomplete output) caused by previous runs
+      restartPolicy: Never
+      initContainers:
+      - name: init-vote
+        image: busybox:latest
+        command: ['sh', '-c', 'until nc -vz todo-postgres 5432 ; do sleep 1; done;']
+      containers:
+        - name: todo-seed
+          image: ghcr.io/chrishrb/ghcr.io/chrishrb/todo-backend:0.1.0
+          env:
+            - name: DATABASE_URL
+              value: postgresql://admin:password@todo-postgres:5432/todo?schema=public
+            - name: AUTH_SECRET_KEY
+              value: MYSECRETKEY
+            - name: REDIS_CLIENT_URL
+              value: redis://:password@redis:6379
+            - name: ADMIN_PASSWORD
+              value: admin
+            - name: USER_PASSWORD
+              value: user
+          command:
+            - /usr/local/bin/npm
+          args:
+            - run
+            - db:seed
