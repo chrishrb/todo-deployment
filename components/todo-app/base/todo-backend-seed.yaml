@@ -26,7 +26,7 @@ spec:
         command: ['sh', '-c', 'until nc -vz todo-postgres 5432 ; do sleep 1; done;']
       containers:
         - name: todo-seed
-          image: ghcr.io/chrishrb/ghcr.io/chrishrb/todo-backend:0.1.0
+          image: ghcr.io/chrishrb/ghcr.io/chrishrb/todo-backend:v0.1.0
           env:
             - name: DATABASE_URL
               value: postgresql://admin:password@todo-postgres:5432/todo?schema=public
