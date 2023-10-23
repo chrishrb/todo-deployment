@@ -19,7 +19,7 @@ spec:
         image: busybox:latest
         command: ['sh', '-c', 'until nc -vz todo-postgres 5432 ; do sleep 1; done;']
       - name: init-migrate
-        image: ghcr.io/chrishrb/ghcr.io/chrishrb/todo-backend:main-521f77f
+        image: ghcr.io/chrishrb/ghcr.io/chrishrb/todo-backend:main-0d949ab
         command: ['/bin/sh', '/app/migrate.sh']
         env:
           - name: DATABASE_URL
@@ -29,7 +29,7 @@ spec:
           - name: USER_PASSWORD
             value: user
       containers:
-      - image: ghcr.io/chrishrb/ghcr.io/chrishrb/todo-backend:main-521f77f
+      - image: ghcr.io/chrishrb/ghcr.io/chrishrb/todo-backend:main-0d949ab
         name: backend
         ports:
         - containerPort: 3000
