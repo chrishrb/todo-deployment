@@ -33,7 +33,7 @@ spec:
             - name: AUTH_SECRET_KEY
               value: MYSECRETKEY
             - name: REDIS_CLIENT_URL
-              value: redis://:password@redis:6379
+              value: redis://:password@todo-redis:6379
             - name: ADMIN_PASSWORD
               value: admin
             - name: USER_PASSWORD
