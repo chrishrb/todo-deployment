@@ -4,6 +4,7 @@ kind: Ingress
 metadata:
   name: ingress
 spec:
+  ingressClassName: nginx
   rules:
   - host: kubernetes.docker.internal
     http:
@@ -15,4 +16,10 @@ spec:
             name: todo-frontend
             port:
               number: 80
-  ingressClassName: nginx
+      - path: /api/v1/
+        pathType: Prefix
+        backend:
+          service:
+            name: todo-backend
+            port:
+              number: 80

@@ -9,6 +9,7 @@ resources:
 - redis-svc.yaml
 - todo-backend-deployment.yaml
 - todo-backend-svc.yaml
+- todo-backend-ingress.yaml
 - todo-frontend-deployment.yaml
 - todo-frontend-svc.yaml
-- todo-frontend-ingress.yaml
+- ingress.yaml
