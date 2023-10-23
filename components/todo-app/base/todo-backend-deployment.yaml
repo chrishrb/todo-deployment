@@ -1,21 +1,22 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: todo-backend
+  name: backend
 spec:
   replicas: 1
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: todo-backend
+      app: backend
   template:
     metadata:
       labels:
-        app: todo-backend
+        app: backend
     spec:
       containers:
       - image: ghcr.io/chrishrb/ghcr.io/chrishrb/todo-backend:main-2bb1d9d
-        name: todo-backend
+        name: backend
         ports:
         - containerPort: 80
         env:

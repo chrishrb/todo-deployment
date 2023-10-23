@@ -2,8 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: todo-redis
-  namespace: todo-app
+  name: redis
 spec:
   selector:
     matchLabels:

@@ -1,20 +1,21 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: todo-frontend
+  name: frontend
 spec:
   replicas: 1
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: todo-frontend
+      app: frontend
   template:
     metadata:
       labels:
-        app: todo-frontend
+        app: frontend
     spec:
       containers:
       - image: ghcr.io/chrishrb/ghcr.io/chrishrb/todo-frontend:main-1f93296
-        name: todo-frontend
+        name: frontend
         ports:
         - containerPort: 80
