@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: todo-seed
+  name: seed
   namespace: todo-app
   annotations:
     argocd.argoproj.io/hook: Sync
@@ -23,7 +23,7 @@ spec:
       initContainers:
       - name: init-vote
         image: busybox:latest
-        command: ['sh', '-c', 'until nc -vz todo-postgres 5432 ; do sleep 1; done;']
+        command: ['sh', '-c', 'until nc -vz todo-backend 80 ; do sleep 1; done;']
       containers:
         - name: todo-seed
           image: ghcr.io/chrishrb/ghcr.io/chrishrb/todo-backend:v0.1.0
