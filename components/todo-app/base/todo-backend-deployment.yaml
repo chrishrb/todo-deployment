@@ -21,6 +21,13 @@ spec:
       - name: init-migrate
         image: ghcr.io/chrishrb/ghcr.io/chrishrb/todo-backend:main-521f77f
         command: ['/bin/sh', '/app/migrate.sh']
+        env:
+          - name: DATABASE_URL
+            value: postgresql://admin:password@todo-postgres:5432/todo?schema=public
+          - name: ADMIN_PASSWORD
+            value: admin
+          - name: USER_PASSWORD
+            value: user
       containers:
       - image: ghcr.io/chrishrb/ghcr.io/chrishrb/todo-backend:main-521f77f
         name: backend
@@ -33,7 +40,3 @@ spec:
             value: MYSECRETKEY
           - name: REDIS_CLIENT_URL
             value: redis://:password@todo-redis:6379
-          - name: ADMIN_PASSWORD
-            value: admin
-          - name: USER_PASSWORD
-            value: user
