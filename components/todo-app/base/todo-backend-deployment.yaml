@@ -21,7 +21,7 @@ spec:
         - containerPort: 3000
         env:
           - name: DATABASE_URL
-            value: postgresql://admin:password@postgres:5432/todo?schema=public
+            value: postgresql://admin:password@todo-postgres:5432/todo?schema=public
           - name: AUTH_SECRET_KEY
             value: MYSECRETKEY
           - name: REDIS_CLIENT_URL
