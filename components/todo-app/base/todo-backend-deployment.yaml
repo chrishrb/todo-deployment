@@ -29,8 +29,8 @@ spec:
           - name: USER_PASSWORD
             value: user
       containers:
-      - image: ghcr.io/chrishrb/ghcr.io/chrishrb/todo-backend:main-0d949ab
-        name: backend
+      - name: backend
+        image: ghcr.io/chrishrb/ghcr.io/chrishrb/todo-backend:main-0d949ab
         ports:
         - containerPort: 3000
         env:

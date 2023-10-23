@@ -13,7 +13,5 @@
 
 2. Setup ArgoCD
     ```bash
-    k create namespace todo-app
-
-    argocd app create todo-frontend --repo https://github.com/chrishrb/todo-deployment.git --path frontend --dest-server https://kubernetes.default.svc --dest-namespace todo-app
+    kubectl apply -f bootstrap/argocd.yaml
     ```

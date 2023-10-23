@@ -15,7 +15,7 @@ spec:
         app: frontend
     spec:
       containers:
-      - image: ghcr.io/chrishrb/ghcr.io/chrishrb/todo-frontend:main-1f93296
-        name: frontend
+      - name: frontend
+        image: ghcr.io/chrishrb/ghcr.io/chrishrb/todo-frontend:main-1f93296
         ports:
         - containerPort: 80

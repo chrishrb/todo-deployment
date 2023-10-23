@@ -1,0 +1,15 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 3
+  template:
+    spec:
+      initContainers:
+      - name: init-migrate
+        image: ghcr.io/chrishrb/ghcr.io/chrishrb/todo-backend:v0.2.0
+      containers:
+      - name: backend
+        image: ghcr.io/chrishrb/ghcr.io/chrishrb/todo-backend:v0.2.0

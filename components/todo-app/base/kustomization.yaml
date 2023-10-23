@@ -1,7 +1,9 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+
 namePrefix: todo-
 namespace: todo-app
+
 resources:
 - postgres-deployment.yaml
 - postgres-svc.yaml
@@ -11,4 +13,3 @@ resources:
 - todo-backend-svc.yaml
 - todo-frontend-deployment.yaml
 - todo-frontend-svc.yaml
-- ingress.yaml

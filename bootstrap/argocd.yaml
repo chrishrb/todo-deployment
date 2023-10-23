@@ -1,7 +1,8 @@
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: todo-app
+  name: todo-app-dev
   namespace: argocd # /!\ important
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -11,10 +12,35 @@ spec:
   source:
     repoURL: https://github.com/chrishrb/todo-deployment.git
     targetRevision: HEAD
-    path: components/todo-app/base
+    path: components/todo-app/overlays/dev
   destination: 
     server: https://kubernetes.default.svc
-    namespace: todo-app
+
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+
+    automated:
+      selfHeal: true
+      prune: true
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: todo-app-prod
+  namespace: argocd # /!\ important
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/chrishrb/todo-deployment.git
+    targetRevision: HEAD
+    path: components/todo-app/overlays/prod
+  destination: 
+    server: https://kubernetes.default.svc
 
   syncPolicy:
     syncOptions:
