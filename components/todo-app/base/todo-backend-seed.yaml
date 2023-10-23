@@ -21,9 +21,9 @@ spec:
       # the case when it is restarted in a new pod (handle temporary files, locks, incomplete output) caused by previous runs
       restartPolicy: Never
       initContainers:
-      - name: init-vote
+      - name: init-seed
         image: busybox:latest
-        command: ['sh', '-c', 'until nc -vz todo-backend 80 ; do sleep 1; done;']
+        command: ['sh', '-c', 'until nc -vz todo-backend 3000 ; do sleep 1; done;']
       containers:
         - name: todo-seed
           image: ghcr.io/chrishrb/ghcr.io/chrishrb/todo-backend:v0.1.0
