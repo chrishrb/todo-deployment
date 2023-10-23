@@ -1,7 +1,8 @@
 <br />
 <div align="center">
-  <a href="#">
+  <a href="https://www.github.com/chrishrb/todo-app">
     <img src="docs/logo.png" alt="Logo" height="80">
+    <img src="docs/kubernetes.png" alt="Logo" height="80">
   </a>
 
   <h3 align="center">ToDo List</h3>
@@ -43,9 +44,9 @@
     kubectl port-forward svc/argocd-server -n argocd 8080:443
     ```
 
-5. Go to `http://dev.todo.local:8080/` or `http://prod.todo.local:8080/`
+5. Go to http://dev.todo.local:8080 or http://prod.todo.local:8080/
 
 ## Todos
 
-- [] put all resources under control of argocd
-- [] generate secrets
+- [ ] put all resources under control of argocd
+- [ ] generate secrets
