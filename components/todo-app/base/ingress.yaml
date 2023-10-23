@@ -22,4 +22,4 @@ spec:
           service:
             name: todo-backend
             port:
-              number: 80
+              number: 3000

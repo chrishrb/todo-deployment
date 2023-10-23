@@ -18,7 +18,7 @@ spec:
       - image: ghcr.io/chrishrb/ghcr.io/chrishrb/todo-backend:main-2bb1d9d
         name: backend
         ports:
-        - containerPort: 80
+        - containerPort: 3000
         env:
           - name: DATABASE_URL
             value: postgresql://admin:password@postgres:5432/todo?schema=public
